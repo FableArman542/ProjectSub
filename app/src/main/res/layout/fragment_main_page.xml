@@ -55,7 +55,7 @@
                 android:gravity="center"
                 android:text="Netflix"
                 android:fontFamily="@font/quicksandbold"
-                android:textAlignment="textStart"
+                <!--android:textAlignment="textStart"-->
                 android:textColor="@color/white"
                 android:textSize="30dp"
                 android:layout_weight="10"/>
@@ -93,7 +93,7 @@
                     android:layout_margin="20dp"
                     android:textSize="13dp"
                     android:fontFamily="@font/quicksandsemibold"
-                    android:text="15 Aug Sunday"
+                    android:text="15 Aug Sunday" />
             </LinearLayout>
 
         </LinearLayout>
