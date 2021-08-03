@@ -4,6 +4,7 @@ import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -37,6 +38,12 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
         holder.subscriptionName.setText(mySub.getName());
         holder.nextPay.setText(mySub.getNextPay());
         holder.amount.setText(mySub.getAmount() + "€");
+        holder.subscriptionSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO
+            }
+        });
     }
 
     @Override
@@ -52,6 +59,8 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
         public TextView nextPay;
         public TextView amount;
 
+        public ImageButton subscriptionSettingsButton;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
@@ -59,6 +68,7 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
             this.subscriptionName = itemView.findViewById(R.id.subscriptionName);
             this.nextPay = itemView.findViewById(R.id.nextPay);
             this.amount = itemView.findViewById(R.id.amount);
+            this.subscriptionSettingsButton = itemView.findViewById(R.id.subscriptionSettings);
         }
     }
 

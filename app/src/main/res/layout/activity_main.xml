@@ -20,10 +20,11 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp" />-->
 
-        <fragment
-            android:id="@+id/mainFragment"
+        <androidx.fragment.app.FragmentContainerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/main_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.example.projectsub.MainPageFragment"/>
+            android:name="com.example.projectsub.fragments.MainPageFragment"/>
 
 </RelativeLayout>
