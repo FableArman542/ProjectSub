@@ -1,255 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddSubscription">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/add_sub_toolbar"
+    android:fillViewport="true"
+    android:scrollbars="none">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="?attr/homeAsUpIndicator" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:fontFamily="@font/quicksandbold"
-        android:textColor="#35424a"
-        android:hint="Your subscription name"
-        android:textSize="22dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_sub_toolbar" />
+        android:layout_height="match_parent"
+        tools:context=".AddSubscription">
 
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@null"
-        android:fontFamily="@font/quicksandbold"
-        android:hint="10$"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/add_sub_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="?attr/homeAsUpIndicator">
 
-    <com.google.android.material.slider.Slider
-        android:id="@+id/slider"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/editText1"
-        app:layout_constraintTop_toBottomOf="@+id/editText1" />
+            <EditText
+                android:id="@+id/sub_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/quicksandbold"
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/quicksandbold"
-        android:text="Description"
-        android:textColor="#35424a"
-        android:textSize="22dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText1"
-        app:layout_constraintTop_toBottomOf="@+id/slider" />
+                android:gravity="center"
+                android:hint="Your subscription name"
+                android:textColor="#35424a"
+                android:textSize="22dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.65"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_sub_toolbar" />
+        </androidx.appcompat.widget.Toolbar>
 
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="0dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:background="@drawable/edittextborder"
-        android:textSize="14dp"
-        android:hint="Type here"
-        app:layout_constraintEnd_toEndOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:fontFamily="@font/quicksandbold"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:hint="10$"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_sub_toolbar" />
 
-    <LinearLayout
-        android:id="@+id/layoutHeader"
-        android:layout_marginTop="20dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine">
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/editText1"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/editText1"
+            app:layout_constraintTop_toBottomOf="@+id/editText1" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/quicksandbold"
-            android:gravity="left|center"
-            android:text="Finish Date"
+            android:text="Description"
             android:textColor="#35424a"
-            android:textSize="22dp" />
+            android:textSize="22dp"
+            app:layout_constraintEnd_toEndOf="@+id/editText1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editText1"
+            app:layout_constraintTop_toBottomOf="@+id/slider" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4"
+        <EditText
+            android:id="@+id/editTextTextMultiLine"
+            android:layout_width="0dp"
+            android:layout_height="119dp"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:background="@drawable/edittextborder"
+            android:textSize="14dp"
+            android:hint="Type here"
+            app:layout_constraintEnd_toEndOf="@+id/description"
+            app:layout_constraintStart_toStartOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <LinearLayout
+            android:id="@+id/layoutHeader"
+            android:layout_marginTop="20dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
+            app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:fontFamily="@font/quicksandbold"
+                android:gravity="left|center"
+                android:text="Finish Date"
+                android:textColor="#35424a"
+                android:textSize="22dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksandbold"
+            android:layout_marginTop="20dp"
+            android:text="Choose Color"
+            android:textColor="#35424a"
+            android:textSize="22dp"
+            app:layout_constraintEnd_toEndOf="@+id/layoutHeader"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/layoutHeader"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/gridLayout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:columnCount="6"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/quicksandbold"
-        android:layout_marginTop="20dp"
-        android:text="Choose Color"
-        android:textColor="#35424a"
-        android:textSize="22dp"
-        app:layout_constraintEnd_toEndOf="@+id/layoutHeader"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/layoutHeader"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c11"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#ff8a84"
+                app:cb_pressedRingWidth="8dip" />
 
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:columnCount="6"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c12"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#f6a2bf"
+                app:cb_pressedRingWidth="8dip" />
 
-        <at.markushi.ui.CircleButton
-            android:id="@+id/c11"
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#ff8a84"
-            app:cb_pressedRingWidth="8dip" />
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c13"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#ffc581"
+                app:cb_pressedRingWidth="8dip" />
 
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#f6a2bf"
-            app:cb_pressedRingWidth="8dip" />
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c14"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#1db954"
+                app:cb_pressedRingWidth="8dip" />
 
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#ffc581"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#1db954"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#75a9f9"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#b38df7"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#ff8a84"
-            app:cb_pressedRingWidth="8dip" />
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c15"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#75a9f9"
+                app:cb_pressedRingWidth="8dip" />
 
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#f6a2bf"
-            app:cb_pressedRingWidth="8dip" />
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c16"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#b38df7"
+                app:cb_pressedRingWidth="8dip" />
 
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#ffc581"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#1db954"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#75a9f9"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#b38df7"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#ff8a84"
-            app:cb_pressedRingWidth="8dip" />
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c21"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#ff8a84"
+                app:cb_pressedRingWidth="8dip" />
 
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#f6a2bf"
-            app:cb_pressedRingWidth="8dip"/>
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c22"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#f6a2bf"
+                app:cb_pressedRingWidth="8dip" />
 
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#ffc581"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#1db954"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#75a9f9"
-            app:cb_pressedRingWidth="8dip" />
-        <at.markushi.ui.CircleButton
-            android:layout_width="50dip"
-            android:layout_height="50dip"
-            android:layout_margin="5dp"
-            app:cb_color="#b38df7"
-            app:cb_pressedRingWidth="8dip" />
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c23"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#ffc581"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c24"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#1db954"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c25"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#75a9f9"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c26"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#b38df7"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c31"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#ff8a84"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c32"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#f6a2bf"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c33"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#ffc581"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c34"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#1db954"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c35"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#75a9f9"
+                app:cb_pressedRingWidth="8dip" />
+
+            <at.markushi.ui.CircleButtonNew
+                android:id="@+id/c36"
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_margin="5dp"
+                app:cb_color="#b38df7"
+                app:cb_pressedRingWidth="8dip" />
 
 
-    </androidx.gridlayout.widget.GridLayout>
+        </androidx.gridlayout.widget.GridLayout>
+
+        <ImageButton
+            android:id="@+id/check_subscription"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

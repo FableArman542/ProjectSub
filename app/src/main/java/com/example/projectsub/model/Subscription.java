@@ -2,20 +2,24 @@ package com.example.projectsub.model;
 
 import android.graphics.Color;
 
+import java.util.Date;
+
 public class Subscription {
 
     private String name;
-    private String nextPay;
+    private Date nextPay;
     private String amount;
 
     private int color;
 
-    public Subscription (String name, String nextPay, String amount, int color) {
+    public Subscription (String name, Date nextPay, String amount, int color) {
         this.name = name;
         this.nextPay = nextPay;
         this.amount = amount;
         this.color = color;
     }
+
+    public Subscription() { }
 
     public int getColor() {
         return color;
@@ -33,11 +37,11 @@ public class Subscription {
         this.name = name;
     }
 
-    public String getNextPay() {
+    public Date getNextPay() {
         return nextPay;
     }
 
-    public void setNextPay(String nextPay) {
+    public void setNextPay(Date nextPay) {
         this.nextPay = nextPay;
     }
 

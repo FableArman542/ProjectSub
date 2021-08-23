@@ -14,11 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.projectsub.R;
 import com.example.projectsub.model.Subscription;
 
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapter.ViewHolder> {
 
-    private Subscription[] subscriptionsList;
+    private List<Subscription> subscriptionsList;
 
-    public SubscriptionAdapter (Subscription[] subscriptionsList) {
+    public SubscriptionAdapter (List<Subscription> subscriptionsList) {
         this.subscriptionsList = subscriptionsList;
     }
 
@@ -32,11 +35,11 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
 
     @Override
     public void onBindViewHolder(SubscriptionAdapter.ViewHolder holder, int position) {
-        final Subscription mySub = subscriptionsList[position];
+        final Subscription mySub = subscriptionsList.get(position);
 
         holder.subscriptionLayout.getBackground().setColorFilter(mySub.getColor(), PorterDuff.Mode.SRC_ATOP);
         holder.subscriptionName.setText(mySub.getName());
-        holder.nextPay.setText(mySub.getNextPay());
+        holder.nextPay.setText(new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(mySub.getNextPay()));
         holder.amount.setText(mySub.getAmount() + "€");
         holder.subscriptionSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +51,7 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
 
     @Override
     public int getItemCount() {
-        return subscriptionsList.length;
+        return subscriptionsList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
