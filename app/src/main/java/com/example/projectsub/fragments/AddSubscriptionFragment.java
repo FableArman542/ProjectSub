@@ -1,25 +1,33 @@
 package com.example.projectsub.fragments;
 
+import android.app.DatePickerDialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,10 +54,13 @@ import at.markushi.ui.CircleButtonNew;
  */
 public class AddSubscriptionFragment extends Fragment {
 
+    private static final String TAG = "ADD_SUBSCRIPTION";
     private int lastId = -1;
     private int color = 0;
 
     private FirebaseUser user;
+
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,7 +80,7 @@ public class AddSubscriptionFragment extends Fragment {
 
         // --------------------------------------------------------------------- \\
 
-                user = FirebaseAuth.getInstance().getCurrentUser();
+       user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             // TODO if user not logged in redirect to login page
             Log.e("AUTH", "User not logged in");
@@ -79,29 +90,78 @@ public class AddSubscriptionFragment extends Fragment {
         cal.set(Calendar.YEAR, 2021);
         cal.set(Calendar.MONTH, 9-1);
         cal.set(Calendar.DAY_OF_MONTH, 12);
-        Date date = cal.getTime();
 
         EditText subscriptionName = view.findViewById(R.id.sub_name);
         EditText amount = view.findViewById(R.id.amountAdd);
         EditText description = view.findViewById(R.id.descriptionAdd);
+        Switch finishSwitch = view.findViewById(R.id.finishDateSwitch);
+        TextView finishText = view.findViewById(R.id.finishDateTextView);
+        NestedScrollView nestedScrollView = view.findViewById(R.id.nestedScrollView);
 
-        Button checkButton = view.findViewById(R.id.check_subscription);
-        checkButton.setOnClickListener(new View.OnClickListener() {
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Log.d(TAG, "onDateSet: "+ year+"-"+(month+1)+"-"+dayOfMonth);
+                finishText.setText(year+"-"+(month+1)+"-"+dayOfMonth);
+            }
+        };
+
+        finishSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    TransitionManager.beginDelayedTransition(nestedScrollView, new AutoTransition());
+                    finishText.setVisibility(View.VISIBLE);
+                    showDatePicker(view);
+                } else {
+                    TransitionManager.beginDelayedTransition(nestedScrollView, new AutoTransition());
+                    finishText.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        finishText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker(view);
+            }
+        });
+
+        Button createSubscriptionButton = view.findViewById(R.id.check_subscription);
+        createSubscriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Composing a new subscription
                 Subscription subscription = new Subscription(subscriptionName.getText().toString(),
-                                                                date,
+                                                                "2021-10-20",
                                                                 amount.getText().toString(),
                                                                 color,
                                                                 "uuid",
-                                                                "monthly");
+                                                                "monthly",
+                                                                (finishSwitch.isChecked()) ? finishText.getText().toString() : "Unlimited",
+                                                                description.getText().toString());
                 addNewSubscription(subscription, view);
                 goBack();
             }
         });
 
         return view;
+    }
+
+    private void showDatePicker(View view) {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                view.getContext(),
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                mDateSetListener,
+                year, month, day
+        );
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 
     private void goBack() {

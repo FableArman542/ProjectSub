@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:scrollbars="none"
-
     android:background="@color/darker_blue_main">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -190,7 +189,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
             <EditText
-                android:id="@+id/descriptionA"
+                android:id="@+id/descriptionAdd"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="10dp"
@@ -207,9 +206,43 @@
                 app:layout_constraintTop_toBottomOf="@+id/editText9" />
 
             <TextView
-                android:id="@+id/editText10"
+                android:id="@+id/editText12ds"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:text="Finish Date"
+                android:textColor="@color/text_add_subscription"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/descriptionAdd"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionAdd" />
 
+            <Switch
+                android:id="@+id/finishDateSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/editText12ds"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/editText12ds" />
+
+            <TextView
+                android:id="@+id/finishDateTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2021-09-12"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/text_add_subscription"
+                android:textSize="13dp"
+                app:layout_constraintEnd_toEndOf="@+id/finishDateSwitch"
+                app:layout_constraintStart_toStartOf="@+id/editText12ds"
+                app:layout_constraintTop_toBottomOf="@+id/editText12ds"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/chooseColorTextView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:background="@null"
@@ -217,8 +250,8 @@
                 android:text="Choose Color"
                 android:textColor="@color/text_add_subscription"
                 android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="@+id/descriptionA"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionA" />
+                app:layout_constraintStart_toStartOf="@+id/editText12ds"
+                app:layout_constraintTop_toBottomOf="@+id/finishDateTextView" />
 
             <androidx.gridlayout.widget.GridLayout
                 android:id="@+id/gridLayout"
@@ -227,8 +260,8 @@
                 android:layout_marginTop="15dp"
                 app:columnCount="4"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/descriptionA"
-                app:layout_constraintTop_toBottomOf="@+id/editText10">
+                app:layout_constraintStart_toStartOf="@+id/descriptionAdd"
+                app:layout_constraintTop_toBottomOf="@+id/chooseColorTextView">
 
                 <at.markushi.ui.CircleButtonNew
                     android:id="@+id/c11"

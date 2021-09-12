@@ -1,27 +1,48 @@
 package com.example.projectsub.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Subscription {
 
     private String name;
-    private Date nextPay;
+    private String nextPay;
     private String amount;
     private String uuid;
     private String frequency;
+    private String finishDate;
+    private String description;
 
     private int color;
 
-    public Subscription (String name, Date nextPay, String amount, int color, String uuid, String frequency) {
+    public Subscription (String name, String nextPay, String amount, int color, String uuid, String frequency, String finishDate, String description) {
         this.name = name;
         this.nextPay = nextPay;
         this.amount = amount;
         this.color = color;
         this.uuid = uuid;
         this.frequency = frequency;
+        this.finishDate = finishDate;
+        this.description = description;
     }
 
     public Subscription() { }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getFinishDate() {
+        return finishDate;
+    }
+
+    public void setFinishDate(String finishDate) {
+        this.finishDate = finishDate;
+    }
 
     public String getFrequency() {
         return frequency;
@@ -55,11 +76,11 @@ public class Subscription {
         this.name = name;
     }
 
-    public Date getNextPay() {
+    public String getNextPay() {
         return nextPay;
     }
 
-    public void setNextPay(Date nextPay) {
+    public void setNextPay(String nextPay) {
         this.nextPay = nextPay;
     }
 

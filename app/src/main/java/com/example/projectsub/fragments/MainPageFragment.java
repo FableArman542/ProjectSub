@@ -126,7 +126,7 @@ public class MainPageFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDelete(adapter));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDelete(adapter, view.findViewById(R.id.coordinator)));
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         addButton = view.findViewById(R.id.addSubscriptionButton);

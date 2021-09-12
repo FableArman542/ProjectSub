@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.projectsub.R;
 import com.example.projectsub.model.Subscription;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +40,7 @@ import java.util.List;
 
 public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapter.ViewHolder> {
 
+    private static final String TAG = "SUB_ADAPTER";
     private List<Subscription> subscriptionsList;
 
     private Subscription mRecentlyDeletedItem;
@@ -58,19 +63,31 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
 
     @Override
     public void onBindViewHolder(SubscriptionAdapter.ViewHolder holder, int position) {
-        final Subscription mySub = subscriptionsList.get(position);
+        final Subscription mySubscription = subscriptionsList.get(position);
+        boolean isClickable = false;
 
-        holder.amountLayout.getBackground().setColorFilter(mySub.getColor(), PorterDuff.Mode.SRC_ATOP);
-//        holder.subscriptionLayout.getBackground().setColorFilter(mySub.getColor(), PorterDuff.Mode.SRC_ATOP);
-        holder.subscriptionName.setText(mySub.getName());
-        holder.nextPay.setText(new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(mySub.getNextPay()));
-        holder.amount.setText(mySub.getAmount() + "€");
-        holder.subscriptionSettingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO
-            }
-        });
+        holder.amountLayout.getBackground().setColorFilter(mySubscription.getColor(), PorterDuff.Mode.SRC_ATOP);
+        holder.subscriptionName.setText(mySubscription.getName());
+        holder.nextPay.setText(mySubscription.getNextPay());
+        holder.amount.setText(mySubscription.getAmount() + "€");
+        holder.finishDate.setText(mySubscription.getFinishDate());
+
+        String desc = mySubscription.getDescription();
+        if (desc != null && !desc.trim().isEmpty()) {
+            isClickable = true;
+            holder.description.setText(desc);
+        }
+
+        if (isClickable) {
+            holder.subscriptionLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    TransitionManager.beginDelayedTransition(holder.subscriptionLayout, new AutoTransition());
+                    holder.descriptionLayout.setVisibility(holder.descriptionLayout.getVisibility()==View.VISIBLE ? View.GONE : View.VISIBLE);
+                }
+            });
+        }
+
         setAnimation(holder.itemView, position);
     }
 
@@ -87,13 +104,12 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
         return subscriptionsList.size();
     }
 
-    public void deleteItem(int position) {
+    public void deleteItem(int position, View coordinator) {
         mRecentlyDeletedItem = subscriptionsList.get(position);
         mRecentlyDeletedItemPosition = position;
         subscriptionsList.remove(position);
         notifyItemRemoved(position);
-//        showUndoSnackbar();
-        deleteFromDatabase(mRecentlyDeletedItem);
+        showUndoSnackbar(coordinator);
     }
 
     private void deleteFromDatabase(Subscription subscription) {
@@ -111,32 +127,36 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
 //        super.onViewDetachedFromWindow(holder);
 //    }
 
-//    private void showUndoSnackbar() {
-//        View view = mActivity.findViewById(R.id.coordinator_layout);
-//        Snackbar snackbar = Snackbar.make(view, R.string.snack_bar_text,
-//                Snackbar.LENGTH_LONG);
-//        snackbar.setAction(R.string.snack_bar_undo, v -> undoDelete());
-//        snackbar.show();
-//    }
-//
-//    private void undoDelete() {
-//        mListItems.add(mRecentlyDeletedItemPosition,
-//                mRecentlyDeletedItem);
-//        notifyItemInserted(mRecentlyDeletedItemPosition);
-//    }
+    private void showUndoSnackbar(View view) {
+        Snackbar snackbar = Snackbar.make(view, R.string.snack_bar_text, Snackbar.LENGTH_LONG);
+        snackbar.setAction(R.string.snack_bar_undo, v -> undoDelete());
+        snackbar.show();
+        snackbar.addCallback(new Snackbar.Callback() {
+            @Override
+            public void onDismissed(Snackbar snackbar, int event) {
+                if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
+                    deleteFromDatabase(mRecentlyDeletedItem);
+                }
+            }
+        });
+    }
+
+    private void undoDelete() {
+        subscriptionsList.add(mRecentlyDeletedItemPosition, mRecentlyDeletedItem);
+        notifyItemInserted(mRecentlyDeletedItemPosition);
+    }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public LinearLayout subscriptionLayout;
+        public LinearLayout descriptionLayout;
         public ConstraintLayout amountLayout;
 
         public TextView subscriptionName;
         public TextView nextPay;
         public TextView amount;
-
-        public ImageButton subscriptionSettingsButton;
-
-
+        public TextView finishDate;
+        public TextView description;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -146,7 +166,9 @@ public class SubscriptionAdapter extends RecyclerView.Adapter<SubscriptionAdapte
             this.subscriptionName = itemView.findViewById(R.id.subscriptionName);
             this.nextPay = itemView.findViewById(R.id.nextPay);
             this.amount = itemView.findViewById(R.id.amount);
-            this.subscriptionSettingsButton = itemView.findViewById(R.id.subscriptionSettings);
+            this.finishDate = itemView.findViewById(R.id.finishDateSub);
+            this.description = itemView.findViewById(R.id.descriptionCard);
+            this.descriptionLayout = itemView.findViewById(R.id.descriptionLayout);
         }
 
     }
