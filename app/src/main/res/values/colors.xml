@@ -7,4 +7,19 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="text_dark1">#368EA0</color>
+    <color name="text_darker">#2F8A9C</color>
+    <color name="text_dark">#56A0AF</color>
+    <color name="text_signin">#E1F8FD</color>
+    <color name="text_add_subscription">#E2FAFE</color>
+
+    <color name="darkless_blue">#44ACC0</color>
+    <color name="dark_blue_main">#2F8A9C</color>
+    <color name="darker_blue_main">#27707E</color>
+    <color name="light_blue_main">#E4FBFF</color>
+    <color name="flashy_blue_main">#82E8EE</color>
+
+    <color name="input_text_blue">#489DAE</color>
 </resources>

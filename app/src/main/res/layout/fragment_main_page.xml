@@ -4,9 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.MainPageFragment">
+    tools:context=".fragments.MainPageFragment"
 
-    <LinearLayout
+    android:background="@color/darker_blue_main">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/header_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,34 +30,41 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:fontFamily="@font/quicksandbold"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="My Subscriptions"
-            android:textColor="#35424a"
-            android:textSize="30dp" />
+            android:textColor="@color/text_dark1"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="2"
-            android:src="@drawable/ic_profile" />
-    </LinearLayout>
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_profile_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:elevation="20dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
         android:layout_height="0dp"
         android:layout_below="@+id/layoutHeader"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/addSubscriptionButton"
+        android:layoutAnimation="@anim/layout_animation"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
         android:id="@+id/addSubscriptionButton"
@@ -56,7 +73,7 @@
         android:layout_height="70dp"
         android:background="@null"
         android:layout_below="@id/recycler_view"
-        android:src="@drawable/ic_add_sub"
+        android:src="@drawable/add_sub_shape"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

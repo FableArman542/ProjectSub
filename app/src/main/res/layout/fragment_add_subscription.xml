@@ -1,309 +1,408 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:scrollbars="none">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    android:scrollbars="none"
+
+    android:background="@color/darker_blue_main">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        tools:context=".AddSubscription">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/add_sub_toolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="?attr/homeAsUpIndicator">
+            android:layout_height="match_parent"
+            tools:context=".AddSubscription">
+
+            <Button
+                android:id="@+id/back_btn"
+                android:layout_width="23dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="70dp"
+                android:background="@drawable/ic_back_btn"
+                android:backgroundTint="@color/light_blue_main"
+                app:layout_constraintStart_toStartOf="@+id/sub_name"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/sub_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="20dp"
-                android:fontFamily="@font/quicksandbold"
-
-                android:gravity="center"
-                android:hint="Your subscription name"
-                android:textColor="#35424a"
-                android:textSize="22dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.65"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="35dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:hint="Amazon Prime"
+                android:textColor="@color/text_add_subscription"
+                android:textColorHint="@color/text_add_subscription"
+                android:textSize="30dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/add_sub_toolbar" />
-        </androidx.appcompat.widget.Toolbar>
+                app:layout_constraintTop_toBottomOf="@+id/back_btn" />
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:fontFamily="@font/quicksandbold"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="30dp"
-            android:hint="10$"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_sub_toolbar" />
+            <EditText
+                android:id="@+id/amountAdd"
+                android:layout_width="wrap_content"
 
-        <com.google.android.material.slider.Slider
-            android:id="@+id/slider"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            app:layout_constraintEnd_toEndOf="@+id/editText1"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/editText1"
-            app:layout_constraintTop_toBottomOf="@+id/editText1" />
-
-        <TextView
-            android:id="@+id/description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/quicksandbold"
-            android:text="Description"
-            android:textColor="#35424a"
-            android:textSize="22dp"
-            app:layout_constraintEnd_toEndOf="@+id/editText1"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/editText1"
-            app:layout_constraintTop_toBottomOf="@+id/slider" />
-
-        <EditText
-            android:id="@+id/editTextTextMultiLine"
-            android:layout_width="0dp"
-            android:layout_height="119dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine"
-            android:background="@drawable/edittextborder"
-            android:textSize="14dp"
-            android:hint="Type here"
-            app:layout_constraintEnd_toEndOf="@+id/description"
-            app:layout_constraintStart_toStartOf="@+id/description"
-            app:layout_constraintTop_toBottomOf="@+id/description" />
-
-        <LinearLayout
-            android:id="@+id/layoutHeader"
-            android:layout_marginTop="20dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="@+id/editTextTextMultiLine"
-            app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_thin"
+                android:hint="5,99"
+                android:textColor="@color/text_add_subscription"
+                android:textColorHint="@color/text_add_subscription"
+                android:textSize="50dp"
+                app:layout_constraintStart_toStartOf="@+id/sub_name"
+                app:layout_constraintTop_toBottomOf="@+id/sub_name" />
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:fontFamily="@font/quicksandbold"
-                android:gravity="left|center"
-                android:text="Finish Date"
-                android:textColor="#35424a"
-                android:textSize="22dp" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip4"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:text="€"
+                android:textColor="@color/text_add_subscription"
+                android:textSize="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/amountAdd"
+                app:layout_constraintStart_toEndOf="@+id/amountAdd"
+                app:layout_constraintTop_toTopOf="@+id/amountAdd" />
+
+            <TextView
+                android:id="@+id/editText4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/quicksandbold"
-            android:layout_marginTop="20dp"
-            android:text="Choose Color"
-            android:textColor="#35424a"
-            android:textSize="22dp"
-            app:layout_constraintEnd_toEndOf="@+id/layoutHeader"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/layoutHeader"
-            app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:hint="Frequency"
+                android:textColor="@color/text_add_subscription"
+                android:textColorHint="@color/text_add_subscription"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/amountAdd"
+                app:layout_constraintTop_toBottomOf="@+id/amountAdd" />
 
-        <androidx.gridlayout.widget.GridLayout
-            android:id="@+id/gridLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            app:columnCount="6"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+            <TextView
+                android:id="@+id/editText6"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:hint="Weekly"
+                android:textColor="@color/text_add_subscription"
+                android:textColorHint="@color/text_add_subscription"
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="@+id/editText4"
+                app:layout_constraintTop_toBottomOf="@+id/editText4" />
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c11"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#ff8a84"
-                app:cb_pressedRingWidth="8dip" />
+            <View
+                android:id="@+id/view"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c12"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#f6a2bf"
-                app:cb_pressedRingWidth="8dip" />
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c13"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#ffc581"
-                app:cb_pressedRingWidth="8dip" />
+                android:background="#ffffff"
+                app:layout_constraintBottom_toBottomOf="@+id/editText6"
+                app:layout_constraintEnd_toStartOf="@+id/editText7"
+                app:layout_constraintStart_toEndOf="@+id/editText6"
+                app:layout_constraintTop_toTopOf="@+id/editText6"
+                app:layout_constraintVertical_bias="0.0" />
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c14"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#1db954"
-                app:cb_pressedRingWidth="8dip" />
+            <TextView
+                android:id="@+id/editText7"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="0dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:hint="Monthly"
+                android:textColor="@color/text_add_subscription"
+                android:textColorHint="@color/text_add_subscription"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toStartOf="@id/view1"
+                app:layout_constraintStart_toEndOf="@id/view"
+                app:layout_constraintTop_toTopOf="@+id/editText6"
+                tools:layout_editor_absoluteX="118dp" />
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c15"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#75a9f9"
-                app:cb_pressedRingWidth="8dip" />
+            <View
+                android:id="@+id/view1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c16"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#b38df7"
-                app:cb_pressedRingWidth="8dip" />
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c21"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#ff8a84"
-                app:cb_pressedRingWidth="8dip" />
+                android:background="#ffffff"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c22"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#f6a2bf"
-                app:cb_pressedRingWidth="8dip" />
+                app:layout_constraintBottom_toBottomOf="@+id/editText6"
+                app:layout_constraintEnd_toStartOf="@id/editText8"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c23"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#ffc581"
-                app:cb_pressedRingWidth="8dip" />
+                app:layout_constraintStart_toEndOf="@+id/editText7"
+                app:layout_constraintTop_toTopOf="@+id/editText6"
+                app:layout_constraintVertical_bias="0.0" />
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c24"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#1db954"
-                app:cb_pressedRingWidth="8dip" />
+            <TextView
+                android:id="@+id/editText8"
+                android:layout_width="0dp"
+                android:gravity="center_vertical"
+                android:layout_height="0dp"
+                android:layout_marginLeft="4dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:hint="Other"
+                android:textColor="@color/text_add_subscription"
+                android:textColorHint="@color/text_add_subscription"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c25"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#75a9f9"
-                app:cb_pressedRingWidth="8dip" />
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/editText7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/view1"
+                app:layout_constraintTop_toTopOf="@+id/editText7"
+                app:layout_constraintVertical_bias="0.0" />
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c26"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#b38df7"
-                app:cb_pressedRingWidth="8dip" />
+            <TextView
+                android:id="@+id/editText9"
+                android:layout_width="wrap_content"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c31"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#ff8a84"
-                app:cb_pressedRingWidth="8dip" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:text="Description"
+                android:textColor="@color/text_add_subscription"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/editText6"
+                app:layout_constraintTop_toBottomOf="@+id/editText6" />
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c32"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#f6a2bf"
-                app:cb_pressedRingWidth="8dip" />
+            <EditText
+                android:id="@+id/descriptionA"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/edittextborder"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Type here"
+                android:inputType="textMultiLine"
+                android:textColor="@color/text_dark"
+                android:textColorHint="@color/text_dark"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/editText9"
+                app:layout_constraintTop_toBottomOf="@+id/editText9" />
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c33"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#ffc581"
-                app:cb_pressedRingWidth="8dip" />
+            <TextView
+                android:id="@+id/editText10"
+                android:layout_width="wrap_content"
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c34"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#1db954"
-                app:cb_pressedRingWidth="8dip" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@null"
+                android:fontFamily="@font/roboto_light"
+                android:text="Choose Color"
+                android:textColor="@color/text_add_subscription"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="@+id/descriptionA"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionA" />
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c35"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#75a9f9"
-                app:cb_pressedRingWidth="8dip" />
+            <androidx.gridlayout.widget.GridLayout
+                android:id="@+id/gridLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:columnCount="4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/descriptionA"
+                app:layout_constraintTop_toBottomOf="@+id/editText10">
 
-            <at.markushi.ui.CircleButtonNew
-                android:id="@+id/c36"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_margin="5dp"
-                app:cb_color="#b38df7"
-                app:cb_pressedRingWidth="8dip" />
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c11"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#ff8a84"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c12"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#FFD670"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c13"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#EEFF8D"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c14"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#ADF7B6"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c15"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#75a9f9"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c16"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#b38df7"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c21"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#ff8a84"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c22"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#f6a2bf"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c23"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#ffc581"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c24"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#1db954"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c25"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#75a9f9"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c26"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#b38df7"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c31"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#ff8a84"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c32"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#f6a2bf"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c33"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#ffc581"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c34"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#1db954"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c35"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#75a9f9"
+                    app:cb_pressedRingWidth="8dip" />
+
+                <at.markushi.ui.CircleButtonNew
+                    android:id="@+id/c36"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_margin="5dp"
+                    app:cb_color="#b38df7"
+                    app:cb_pressedRingWidth="8dip" />
 
 
-        </androidx.gridlayout.widget.GridLayout>
+            </androidx.gridlayout.widget.GridLayout>
 
-        <ImageButton
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
             android:id="@+id/check_subscription"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="20dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_check"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+            android:layout_width="0dp"
 
+            android:layout_height="100dp"
+            android:background="@drawable/create_button_shape"
+            android:padding="0dp"
+            android:text="Create"
+            android:textColor="@color/text_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

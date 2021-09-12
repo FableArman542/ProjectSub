@@ -3,6 +3,7 @@ package com.example.projectsub.fragments;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.projectsub.R;
@@ -22,8 +24,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link LoginFragment} factory method to
@@ -31,10 +31,12 @@ import org.jetbrains.annotations.NotNull;
  */
 public class LoginFragment extends Fragment {
 
+    private static final String TAG = "LOGIN";
     private FirebaseAuth mAuth;
 
     private EditText emailTxtBox, passwordTxtBox;
-    private Button loginBtn, registerBtn;
+    private Button loginBtn;
+    private TextView registerTxt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,15 +46,20 @@ public class LoginFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
+        if (mAuth.getCurrentUser() != null) {
+            updateUI();
+        }
+
         emailTxtBox = view.findViewById(R.id.emaillogin);
         passwordTxtBox = view.findViewById(R.id.passlogin);
         loginBtn = view.findViewById(R.id.loginbutton);
-        registerBtn = view.findViewById(R.id.registerbutton);
+        registerTxt = view.findViewById(R.id.registerTextView);
 
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        registerTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAccount(emailTxtBox.getText().toString(), passwordTxtBox.getText().toString());
+                //createAccount(emailTxtBox.getText().toString(), passwordTxtBox.getText().toString());
+                sharedAnimation(view);
             }
         });
 
@@ -64,6 +71,22 @@ public class LoginFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void sharedAnimation (View view) {
+        View back = view.findViewById(R.id.view_back_register);
+        View front = view.findViewById(R.id.view_front_register);
+        TextView name = view.findViewById(R.id.nameTextView);
+        Log.d(TAG, "sharedAnimation: "+back);
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        RegisterFragment fragment = new RegisterFragment();
+        manager.beginTransaction()
+                .addSharedElement(back, ViewCompat.getTransitionName(back))
+                .addSharedElement(front, ViewCompat.getTransitionName(front))
+                .addSharedElement(name, ViewCompat.getTransitionName(name))
+                .addToBackStack(TAG)
+                .replace(R.id.main_fragment, fragment)
+                .commit();
     }
 
     private void createAccount (String email, String password) {

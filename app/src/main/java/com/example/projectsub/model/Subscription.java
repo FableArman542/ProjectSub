@@ -1,7 +1,5 @@
 package com.example.projectsub.model;
 
-import android.graphics.Color;
-
 import java.util.Date;
 
 public class Subscription {
@@ -9,17 +7,37 @@ public class Subscription {
     private String name;
     private Date nextPay;
     private String amount;
+    private String uuid;
+    private String frequency;
 
     private int color;
 
-    public Subscription (String name, Date nextPay, String amount, int color) {
+    public Subscription (String name, Date nextPay, String amount, int color, String uuid, String frequency) {
         this.name = name;
         this.nextPay = nextPay;
         this.amount = amount;
         this.color = color;
+        this.uuid = uuid;
+        this.frequency = frequency;
     }
 
     public Subscription() { }
+
+    public String getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(String frequency) {
+        this.frequency = frequency;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public int getColor() {
         return color;
